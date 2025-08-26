@@ -10,16 +10,18 @@ const translateBtn = document.getElementById("translateBtn");
 let lastWord = "";
 let sentenceWords = [];
 
+// ===== Clear Sentence =====
 clearBtn.onclick = () => {
     sentenceWords = [];
     sentenceEl.textContent = "---";
     translationEl.textContent = "---";
 };
 
+// ===== Translate Button =====
 translateBtn.onclick = async () => {
     const sentenceText = sentenceWords.join(" ");
     if (!sentenceText) return;
-    const res = await fetch("http://localhost:5000/translate", {
+    const res = await fetch("/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sentence: sentenceText, lang: "hi" })
@@ -31,11 +33,11 @@ translateBtn.onclick = async () => {
     translationEl.classList.add("show");
 };
 
+// ===== Speak in Hindi =====
 document.getElementById("speakHindiBtn").onclick = async () => {
     const sentenceText = sentenceWords.join(" ");
     if (!sentenceText) return;
-
-    const res = await fetch("http://localhost:5000/translate", {
+    const res = await fetch("/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sentence: sentenceText, lang: "hi" })
@@ -44,14 +46,16 @@ document.getElementById("speakHindiBtn").onclick = async () => {
     speak(translation, "hi");
 };
 
+// ===== Speak in English =====
 document.getElementById("speakEnglishBtn").onclick = () => {
     const sentenceText = sentenceWords.join(" ");
     if (!sentenceText) return;
     speak(sentenceText, "en");
 };
 
+// ===== Speak Function =====
 function speak(text, lang) {
-    fetch("http://localhost:5000/speak", {
+    fetch("/speak", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text, lang })
@@ -63,11 +67,13 @@ function speak(text, lang) {
         });
 }
 
+// ===== Webcam Init =====
 async function initWebcam() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
     webcam.srcObject = stream;
 }
 
+// ===== Capture Frame =====
 function captureFrameBlob() {
     const canvas = document.createElement("canvas");
     canvas.width = webcam.videoWidth;
@@ -77,12 +83,13 @@ function captureFrameBlob() {
     return new Promise(res => canvas.toBlob(res, "image/jpeg"));
 }
 
+// ===== Recognize Gesture =====
 async function recognizeFrame() {
     const blob = await captureFrameBlob();
     const fd = new FormData();
     fd.append("image", blob, "frame.jpg");
 
-    const res = await fetch("http://localhost:5000/recognize", { method: "POST", body: fd });
+    const res = await fetch("/recognize", { method: "POST", body: fd });
     const data = await res.json();
     const word = data.prediction;
     const confidence = data.confidence;
@@ -93,7 +100,6 @@ async function recognizeFrame() {
         predictionEl.textContent = word;
         confidenceFill.style.width = confidencePct + "%";
         confidenceText.textContent = confidencePct + "%";
-
         sentenceWords.push(word);
         sentenceEl.textContent = sentenceWords.join(" ");
     } else {
@@ -103,6 +109,7 @@ async function recognizeFrame() {
     }
 }
 
+// ===== Start Webcam & Loop Recognition =====
 initWebcam().then(() => {
     setInterval(recognizeFrame, 800);
 });
