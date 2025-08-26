@@ -1,0 +1,10 @@
+flask
+flask-cors
+opencv-python
+numpy
+pickle-mixin
+gTTS
+transformers
+tensorflow
+mediapipe
+gunicorn

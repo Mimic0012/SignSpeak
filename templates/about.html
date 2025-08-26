@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - SignSpeak</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #eef2ff, #f5f3ff);
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem 2.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+            .about-container h2 {
+                font-size: 2.4rem;
+                margin-bottom: 1rem;
+                color: #6B21A8;
+            }
+
+            .about-container p {
+                font-size: 1.15rem;
+                line-height: 1.8;
+                color: #374151;
+                margin-bottom: 1.2rem;
+            }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            background-color: #6B21A8;
+            color: white;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+            .back-btn:hover {
+                background-color: #4C1D95;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🖐 SignSpeak</h1>
+    </header>
+
+    <main>
+        <div class="about-container">
+            <h2>About SignSpeak</h2>
+            <p>
+                <strong>SignSpeak</strong> is designed to make conversations between sign language users and non‑signers effortless and instant.
+                By recognizing hand gestures and turning them into spoken and written words, we make communication more inclusive for everyone.
+            </p>
+            <p>
+                This project is brought to you by <strong>ByteBusters</strong> — a team passionate about removing communication barriers and creating tech that’s simple, intuitive, and accessible.
+            </p>
+            <p>
+                From smooth translations to a friendly interface, every feature in SignSpeak is made with the goal of connecting people.
+            </p>
+            <a class="back-btn" href="{{ url_for('home') }}">← Back to Translator</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>Built by ByteBusters | Powered by Flask</p>
+    </footer>
+</body>
+</html>

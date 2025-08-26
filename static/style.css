@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F3F4F6;
+    color: #111827;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #1E3A8A;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 2rem;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.video-panel video {
+    width: 480px;
+    max-width: 90vw;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.result-panel {
+    text-align: center;
+    min-width: 250px;
+    min-height: 200px;
+}
+
+    .result-panel h2 {
+        font-size: 2.5rem;
+        margin-bottom: 0.3rem;
+        min-height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .result-panel h3 {
+        font-size: 1.8rem;
+        color: #0F766E;
+        margin-top: 0.4rem;
+        font-weight: 500;
+        opacity: 0;
+    }
+
+.fade-in.show {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.confidence-bar {
+    background: #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 20px;
+    width: 100%;
+    margin-top: 0.6rem;
+    margin-bottom: 0.3rem;
+    transition: background 0.3s ease;
+}
+
+#confidence-fill {
+    background-color: #06B6D4;
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.sentence-container {
+    margin-top: 1rem;
+    background: #fff;
+    padding: 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+    .sentence-container h4 {
+        margin: 0 0 0.3rem;
+        font-size: 1rem;
+        color: #374151;
+    }
+
+#sentence {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #111827;
+    min-height: 1.5em;
+}
+
+.sentence-controls button {
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.3rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.controls {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+    .controls button {
+        background-color: #6B21A8;
+        color: white;
+        border: none;
+        padding: 0.9rem 1.6rem;
+        margin: 0.5rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+        .controls button:hover {
+            background-color: #4C1D95;
+        }
+
+footer {
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #E5E7EB;
+    color: #374151;
+}
